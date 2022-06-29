@@ -1,0 +1,1 @@
+parse-markdown: func(url: string) -> string

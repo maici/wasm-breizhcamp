@@ -1,0 +1,222 @@
+@import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
+
+.render {
+    width: 60vw;
+}
+
+@media print {
+
+    .render *,
+    .render *:before,
+    .render *:after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    .render a,
+    .render a:visited {
+        text-decoration: underline;
+    }
+
+    .render a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    .render abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    .render a[href^="#"]:after,
+    .render a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    .render pre,
+    .render blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    .render thead {
+        display: table-header-group;
+    }
+
+    .render tr,
+    .render img {
+        page-break-inside: avoid;
+    }
+
+    .render img {
+        max-width: 100% !important;
+    }
+
+    .render p,
+    .render h2,
+    .render h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    .render h2,
+    .render h3 {
+        page-break-after: avoid;
+    }
+}
+
+.render {
+    font-size: 12px;
+}
+
+@media screen and (min-width: 32rem) and (max-width: 48rem) {
+    .render html {
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 48rem) {
+    .render html {
+        font-size: 16px;
+    }
+}
+
+.render {
+    line-height: 1.85;
+}
+
+.render p,
+.render .splendor-p {
+    font-size: 1rem;
+    margin-bottom: 1.3rem;
+}
+
+.render h1,
+.render .splendor-h1,
+.render h2,
+.render .splendor-h2,
+.render h3,
+.render .splendor-h3,
+.render h4,
+.render .splendor-h4 {
+    margin: 1.414rem 0 0.5rem;
+    font-weight: inherit;
+    line-height: 1.42;
+}
+
+.render h1,
+.render .splendor-h1 {
+    margin-top: 0;
+    font-size: 3.998rem;
+}
+
+.render h2,
+.render .splendor-h2 {
+    font-size: 2.827rem;
+}
+
+.render h3,
+.render .splendor-h3 {
+    font-size: 1.999rem;
+}
+
+.render h4,
+.render .splendor-h4 {
+    font-size: 1.414rem;
+}
+
+.render h5,
+.render .splendor-h5 {
+    font-size: 1.121rem;
+}
+
+.render h6,
+.render .splendor-h6 {
+    font-size: 0.88rem;
+}
+
+.render small,
+.render .splendor-small {
+    font-size: 0.707em;
+}
+
+.render img,
+.render canvas,
+.render iframe,
+.render video,
+.render svg,
+.render select,
+.render textarea {
+    max-width: 100%;
+}
+
+.render {
+    font-size: 18px;
+    max-width: 100%;
+}
+
+.render {
+    color: #444;
+    font-family: "Merriweather", Georgia, serif;
+    margin: 0;
+    max-width: 100%;
+}
+
+.render p,
+.render *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
+    margin: 1rem auto 1rem;
+    max-width: 36rem;
+    padding: 0.25rem;
+}
+
+.render div {
+    width: 100%;
+}
+
+.render div img {
+    width: 100%;
+}
+
+.render blockquote p {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin: 1rem auto 1rem;
+    max-width: 48rem;
+}
+
+.render li {
+    margin-left: 2rem;
+}
+
+.render h1 {
+    padding: 4rem 0 !important;
+}
+
+.render p {
+    color: #555;
+    height: auto;
+    line-height: 1.45;
+}
+
+.render pre,
+.render code {
+    font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+.render pre {
+    background-color: #fafafa;
+    font-size: 0.8rem;
+    overflow-x: scroll;
+    padding: 1.125em;
+}
+
+.render a,
+.render a:visited {
+    color: #3498db;
+}
+
+.render a:hover,
+.render a:focus,
+.render a:active {
+    color: #2980b9;
+}
