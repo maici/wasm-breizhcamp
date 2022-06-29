@@ -1,8 +1,24 @@
+use std::path::PathBuf;
+
 use md_parser::MdParserData;
+use structopt::StructOpt;
 use wit_bindgen_wasmtime::wasmtime::*;
 
 wit_bindgen_wasmtime::import!("../md-parser/md-parser.wit");
 wit_bindgen_wasmtime::export!("./fetch.wit");
+
+#[derive(StructOpt)]
+#[structopt(
+    name = "custom runtime with fetch",
+    about = "Markdown to HTML renderer CLI, written with Rust & custom ABI"
+)]
+pub struct Options {
+    #[structopt(parse(from_os_str))]
+    wasm: PathBuf,
+
+    #[structopt(short, long, parse(from_str))]
+    url: String,
+}
 
 impl fetch::Fetch for MdParserData {
     fn fetch(&mut self, url: &str) -> String {
@@ -14,13 +30,10 @@ impl fetch::Fetch for MdParserData {
 }
 
 fn main() {
+    let options = Options::from_args();
     let engine = Engine::default();
+    let module = Module::from_file(&engine, options.wasm).unwrap();
     let mut linker = Linker::new(&engine);
-    let module = Module::from_file(
-        &engine,
-        "../md-parser/target/wasm32-unknown-unknown/release/md_parser.wasm",
-    )
-    .unwrap();
     let mut store = Store::new(&engine, MdParserData::default());
 
     fetch::add_to_linker(&mut linker, |s| s).unwrap();
@@ -29,10 +42,7 @@ fn main() {
         md_parser::MdParser::instantiate(&mut store, &module, &mut linker, |s| s).unwrap();
 
     let markdown = wasm_md_parser
-        .parse_markdown(
-            &mut store,
-            "https://raw.githubusercontent.com/WebAssembly/spec/main/README.md",
-        )
+        .parse_markdown(&mut store, options.url.as_str())
         .unwrap();
 
     println!("{}", markdown);
